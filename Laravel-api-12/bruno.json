@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Laravel-api-12",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
