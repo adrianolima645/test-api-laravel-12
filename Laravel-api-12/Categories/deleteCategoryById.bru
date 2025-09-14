@@ -1,11 +1,11 @@
 meta {
-  name: getCategories
+  name: deleteCategoryById
   type: http
-  seq: 1
+  seq: 5
 }
 
-get {
-  url: {{baseUrl}}/api/v1/categories
+delete {
+  url: {{baseUrl}}/api/v1/categories/11
   body: none
   auth: none
 }

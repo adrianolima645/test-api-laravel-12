@@ -1,0 +1,26 @@
+meta {
+  name: updateBookById
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/api/v1/books/52
+  body: json
+  auth: none
+}
+
+headers {
+  x_api_key: {{x_api_key}}
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "The Lord of the Rings",
+    "author": "J. R. R. Tolkien",
+    "published_at": "1997-01-01",
+    "category_id": 2
+  }
+}

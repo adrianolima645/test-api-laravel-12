@@ -1,0 +1,24 @@
+meta {
+  name: createEvent
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/events
+  body: json
+  auth: none
+}
+
+headers {
+  x_api_key: {{x_api_key}}
+}
+
+body:json {
+  {
+    "user_id": 1,
+    "book_id": 44,
+    "type": "return",
+    "event_date": "2025-09-15 05:06:33"
+  }
+}

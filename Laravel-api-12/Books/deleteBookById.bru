@@ -1,0 +1,17 @@
+meta {
+  name: deleteBookById
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/books/53
+  body: none
+  auth: none
+}
+
+headers {
+  x_api_key: {{x_api_key}}
+  Accept: application/json
+  Content-Type: application/json
+}

@@ -1,0 +1,21 @@
+meta {
+  name: updateCategoryById
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/categories/11
+  body: json
+  auth: none
+}
+
+headers {
+  x_api_key: {{x_api_key}}
+}
+
+body:json {
+  {
+    "name": "Sci-Fi Books"
+  }
+}
