@@ -1,11 +1,11 @@
 meta {
-  name: getCategories
+  name: getEventByUserId
   type: http
-  seq: 1
+  seq: 4
 }
 
 get {
-  url: {{baseUrl}}/api/v1/categories
+  url: {{baseUrl}}/api/v1/events/user/1
   body: none
   auth: none
 }

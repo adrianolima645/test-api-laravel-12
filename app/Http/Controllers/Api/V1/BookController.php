@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookResource;
@@ -14,10 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        // Retrieve all books with their category
         $books = Book::with('category')->get();
 
-        // Return as JSON using BookResource collection
         return BookResource::collection($books);
     }
 
@@ -26,18 +24,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate request
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
+            'title' => 'sometimes|required|string|max:255',
+            'author' => 'sometimes|required|string|max:255',
+            'category_id' => 'sometimes|required|exists:categories,id',
             'published_at' => 'nullable|date',
         ]);
 
-        // Create book
         $book = Book::create($validated);
 
-        // Return the created book
         return new BookResource($book);
     }
 
@@ -46,7 +41,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return new BookResource($book);
     }
 
     /**
@@ -54,7 +49,17 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+
+        $validated = $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'author' => 'sometimes|required|string|max:255',
+            'category_id' => 'sometimes|required|exists:categories,id',
+            'published_at' => 'nullable|date',
+        ]);
+
+        $book->update($validated);
+
+        return new BookResource($book);
     }
 
     /**
@@ -62,6 +67,18 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        if (!$book) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Book not found',
+        ], 404);
+        }
+
+        $book->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Book deleted successfully',
+        ]);
     }
 }

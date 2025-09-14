@@ -1,15 +1,21 @@
 meta {
-  name: getCategories
+  name: createCategory
   type: http
-  seq: 1
+  seq: 2
 }
 
-get {
+post {
   url: {{baseUrl}}/api/v1/categories
-  body: none
+  body: json
   auth: none
 }
 
 headers {
   x_api_key: {{x_api_key}}
+}
+
+body:json {
+  {
+    "name": "Sci-Fi Books"
+  }
 }

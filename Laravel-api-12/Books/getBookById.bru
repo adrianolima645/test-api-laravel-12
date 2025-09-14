@@ -1,0 +1,17 @@
+meta {
+  name: getBookById
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/books/52
+  body: none
+  auth: none
+}
+
+headers {
+  x_api_key: {{x_api_key}}
+  Accept: application/json
+  Content-Type: application/json
+}
