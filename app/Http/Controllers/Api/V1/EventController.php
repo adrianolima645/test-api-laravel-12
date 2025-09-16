@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\EventType;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EventResource;
 use App\Models\Book;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 
 class EventController extends Controller
 {
@@ -29,7 +31,7 @@ class EventController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'book_id' => 'required|exists:books,id',
-            'type' => 'required',
+            'type' => ['required', new Enum(EventType::class)],
             'event_date' => 'nullable|date',
         ]);
 
@@ -54,7 +56,7 @@ class EventController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'book_id' => 'required|exists:books,id',
-            'type' => 'required',
+            'type' => ['required', new Enum(EventType::class)],
             'event_date' => 'nullable|date',
         ]);
 
